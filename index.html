@@ -26,6 +26,9 @@
             background: #000000;
             padding: 12px;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         nav a {
@@ -48,7 +51,7 @@
         }
 
         h2 {
-            border-bottom: 2px solid #007acc;
+            border-bottom: 2px solid #000000;
             padding-bottom: 5px;
         }
 
@@ -61,12 +64,50 @@
             margin: 5px 0;
         }
 
+        .profile-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .profile-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #000000;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .profile-btn:hover {
+            background-color: #005f99;
+            transform: translateY(-2px);
+        }
+
         footer {
             text-align: center;
             padding: 15px;
-            background: #007acc;
+            background: #000000;
             color: white;
             margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            nav a {
+                display: inline-block;
+                margin: 5px 8px;
+            }
+
+            .profile-buttons {
+                flex-direction: column;
+            }
+
+            .profile-btn {
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -75,10 +116,11 @@
 
     <header>
         <h1>Sharanu N Dibbadamani</h1>
-        <p>Embedded Firmware/Software Developer</p>
+        <p>Embedded Firmware Developer</p>
     </header>
 
     <nav>
+        <a href="#summary">Summary</a>
         <a href="#education">Education</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
@@ -86,14 +128,14 @@
         <a href="#certifications">Certifications</a>
         <a href="#achievements">Achievements</a>
         <a href="#contact">Contact</a>
+        <a href="#developer-profiles">Developer Profiles</a>
     </nav>
 
-    <section id="about">
-        <h2>Profile</h2>
+    <section id="summary">
+        <h2>Summary</h2>
         <p>
-            Embedded Firmware Developer with 2+ years of experience in
-            Embedded C, ESP32, BLE, MQTT, RTOS, CAN communication,
-            Python automation, and IoT development.
+            Embedded Firmware Developer with 3+ years of experience in
+            design & development of Firmware as per business/software requirement specifications.
         </p>
     </section>
 
@@ -102,33 +144,34 @@
 
         <p>
             <strong>SDM College of Engineering & Technology, Dharwad, Karnataka</strong><br>
-            Electrical & Electronics Engineering | Aug 2018 - July 2022<br>
+            Bachelor of Engineering | Electrical & Electronics Engineering | Aug 2018 - July 2022<br>
+            
         </p>
 
         <p>
-            <strong>Bachelor of Engineeri</strong><br>
-            Electrical & Electronics Engineering | Aug 2018 - July 2022<br>
+            <strong>Aryabhata PU Science College, Dharwad, Karnataka</strong><br>
+            PCMB, English & Hindi | May 2018 - may 2018<br>
+            
         </p>
-    
+
         <p>
-            <strong>Bachelor of Engineering</strong><br>
-            Electrical & Electronics Engineering | Aug 2018 - July 2022<br>
+            <strong>Kendriya Vidyalaya Sangathan, Dharwad, Karnataka</strong><br>
+            CBSE | March 2006 - March 2016<br>
+            
         </p>
-        
     </section>
 
     <section id="skills">
         <h2>Skills</h2>
 
         <ul>
-            <li>C, C++, Python</li>
-            <li>Embedded C</li>
-            <li>ESP32 / ESP32-S3</li>
-            <li>BLE (NimBLE)</li>
-            <li>MQTT</li>
-            <li>FreeRTOS</li>
-            <li>UART, SPI, I2C, CAN</li>
-            <li>Git, Linux, ESP-IDF</li>
+            <li><strong>Programming language:</strong> C, C++, Python.</li>
+            <li><strong>Firmware Development:</strong> Bare-metal & RTOS(Free-RTOS).</li>
+            <li><strong>Communication protocols:</strong> USART, USB, SPI, I2S, BLE.</li>
+            <li><strong>Microcontrollers & Modules:</strong> STM32, ESP32, NXP S32K3XX, CYBT-413061-02.</li>
+            <li><strong>Development tools:</strong> Git, GitHub, GitLab, Bitbucket, SourceTree, Tortoise-Git, Test-link, Bugzilla.</li>
+            <li><strong>Debugging & Testing tools:</strong> UART, JTAG, GDB, Logic analyser, Oscilloscope, Dock light, OBD Emulator, Peak CAN view, Savvy CAN, MATLAB, Simulink, MS-Excel.</li>
+
         </ul>
     </section>
 
@@ -136,17 +179,45 @@
         <h2>Experience</h2>
 
         <p>
-            <strong>Embedded Firmware Developer</strong><br>
-            2023 – Present
+            <strong>Senior Engineer</strong> | Ielektron Technologies Engineering PVT LTD, Chennai | Sept 2026 – June 2026<br>
         </p>
-
         <ul>
             <li>Develop firmware using Embedded C.</li>
             <li>Develop BLE-based applications using ESP32.</li>
             <li>Implement MQTT communication for IoT devices.</li>
             <li>Work with UART, SPI, I2C and CAN protocols.</li>
             <li>Develop device drivers and debugging solutions.</li>
+            <li>Work on RTOS-based embedded applications.</li>
         </ul>
+
+        <p>
+            <strong>Embedded Engineer</strong> | Thingularity Consulting PVT LTD, Bangalore | Sept 2026 – June 2026<br>
+        </p>
+        <ul>
+            <li>Develop firmware using Embedded C.</li>
+            <li>Develop BLE-based applications using ESP32.</li>
+            <li>Implement MQTT communication for IoT devices.</li>
+            <li>Work with UART, SPI, I2C and CAN protocols.</li>
+            <li>Develop device drivers and debugging solutions.</li>
+            <li>Work on RTOS-based embedded applications.</li>
+        </ul>
+
+        <p>
+            <strong>Embedded Firmware Engineer</strong> | iTriangle Infotech PVT LTD, Bangalore | Sept 2026 – June 2026<br>
+        </p>
+        <ul>
+            <li>Develop firmware using Embedded C.</li>
+            <li>Develop BLE-based applications using ESP32.</li>
+            <li>Implement MQTT communication for IoT devices.</li>
+            <li>Work with UART, SPI, I2C and CAN protocols.</li>
+            <li>Develop device drivers and debugging solutions.</li>
+            <li>Work on RTOS-based embedded applications.</li>
+        </ul>
+
+
+        
+
+
     </section>
 
     <section id="projects">
@@ -172,6 +243,11 @@
                 <strong>Motion Sensor Interface</strong> –
                 H3LIS100DL integration with ESP32-S3 using I2C.
             </li>
+
+            <li>
+                <strong>A2DP Bluetooth Audio Project</strong> –
+                Bluetooth audio streaming and control implementation.
+            </li>
         </ul>
     </section>
 
@@ -181,7 +257,7 @@
         <ul>
             <li>Embedded Systems Certification</li>
             <li>Python Programming Certification</li>
-            <li>IoT Fundamentals</li>
+            <li>IoT Fundamentals Certification</li>
         </ul>
     </section>
 
@@ -189,23 +265,47 @@
         <h2>Achievements</h2>
 
         <ul>
-            <li>2+ years of Embedded Firmware Development experience.</li>
-            <li>Successfully developed BLE and IoT-based solutions.</li>
-            <li>Worked on ESP32, RTOS, MQTT and CAN-based projects.</li>
+            <li>2 times National level Hockey player, representing KVS NAL Bangalore.</li>
+            <li>5 Times Regional level Hockey player, representing KVS Dharwad.</li>
+            <li>5 Times Regional level Chess player, representing KVS Dharwad.</li>
         </ul>
     </section>
 
     <section id="contact" class="contact">
         <h2>Contact</h2>
 
-        <p><strong>Email:</strong> your-email@gmail.com</p>
-        <p><strong>Phone:</strong> +91 XXXXXXXXXX</p>
-        <p><strong>GitHub:</strong> https://github.com/your-github</p>
-        <p><strong>LinkedIn:</strong> https://linkedin.com/in/your-profile</p>
+        <p><strong>Email:</strong> work.sharanu@gmail.com</p>
+        <p><strong>Location:</strong> Bangalore, Karnataka, India</p>
+    </section>
+
+    <section id="developer-profiles">
+        <h2>Developer Profiles</h2>
+
+        <div class="profile-buttons">
+
+            <a href="https://leetcode.com/u/Sharanu2001/"
+               target="_blank"
+               class="profile-btn">
+                LeetCode
+            </a>
+
+            <a href="https://github.com/SharanuND"
+               target="_blank"
+               class="profile-btn">
+                GitHub
+            </a>
+
+            <a href="https://www.linkedin.com/in/sharanu-dibbadamani/"
+               target="_blank"
+               class="profile-btn">
+                LinkedIn
+            </a>
+
+        </div>
     </section>
 
     <footer>
-        <p>© 2026 Sharanu N Dibbadamani | Embedded Firmware Portfolio</p>
+        <p>© 2026 Sharanu N Dibbadamani | Embedded Firmware Engineer Profile</p>
     </footer>
 
 </body>
