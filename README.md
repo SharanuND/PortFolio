@@ -1,1 +1,1 @@
-### Sharanu's Embedded Firmware Enginner Profile
+### Sharanu's Firmware Profile
