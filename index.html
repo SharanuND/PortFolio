@@ -1,399 +1,1558 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sharanu N Dibbadamani | Embedded Firmware Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1b">
+<title>Sharanu N Dibbadamani | Embedded Firmware Engineer</title>
 
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            color: #333;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        header {
-            background: #000000;
-            color: #fff;
-            padding: 30px 0;
-            text-align: center;
-        }
+<style>
+:root {
+  --bg: #080d1b;
+  --surface: #101a2d;
+  --surface2: #14223a;
+  --blue: #3b82f6;
+  --cyan: #22d3ee;
+  --text: #edf4ff;
+  --muted: #94a3b8;
+  --border: rgba(148,163,184,.15);
+  --gradient: linear-gradient(120deg,#3b82f6,#22d3ee);
+}
 
-        nav {
-            background: #000000;
-            padding: 12px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: 500;
-        }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
 
-        nav a:hover {
-            text-decoration: underline;
-        }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans',sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-        section {
-            padding: 20px;
-            margin: 15px;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-        h2 {
-            border-bottom: 2px solid #000000;
-            padding-bottom: 5px;
-        }
+button {
+  font: inherit;
+}
 
-        ul {
-            list-style: square;
-            padding-left: 20px;
-        }
+.container {
+  width: min(1120px, 90%);
+  margin: auto;
+}
 
-        .contact p {
-            margin: 5px 0;
-        }
+.gradient-text {
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
-        .profile-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
+.section {
+  padding: 100px 0;
+}
 
-        .profile-btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #000000;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
+.section-label {
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
 
-        .profile-btn:hover {
-            background-color: #005f99;
-            transform: translateY(-2px);
-        }
+.section-heading {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: clamp(30px,4vw,43px);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #000000;
-            color: white;
-            margin-top: 20px;
-        }
+.section-description {
+  color: var(--muted);
+  max-width: 650px;
+  margin-bottom: 38px;
+}
 
-        @media (max-width: 768px) {
-            nav a {
-                display: inline-block;
-                margin: 5px 8px;
-            }
+/* Background effects */
 
-            .profile-buttons {
-                flex-direction: column;
-            }
+.background-glow {
+  position: fixed;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(130px);
+  opacity: .12;
+  pointer-events: none;
+  z-index: -1;
+}
 
-            .profile-btn {
-                text-align: center;
-            }
-        }
-    </style>
+.glow-one {
+  background: #2563eb;
+  top: -150px;
+  right: -100px;
+}
+
+.glow-two {
+  background: #06b6d4;
+  bottom: 5%;
+  left: -200px;
+}
+
+/* Scroll progress */
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: var(--gradient);
+  z-index: 1001;
+}
+
+/* Navigation */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(8,13,27,.85);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo {
+  font-family: 'Space Grotesk',sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  white-space: nowrap;
+}
+
+.logo span {
+  color: var(--cyan);
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  transition: .25s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--cyan);
+}
+
+.menu-btn {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: white;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+/* Hero */
+
+.hero {
+  min-height: 650px;
+  display: flex;
+  align-items: center;
+  padding: 90px 0 75px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.4fr .8fr;
+  align-items: center;
+  gap: 65px;
+}
+
+.availability {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid rgba(34,211,238,.25);
+  background: rgba(34,211,238,.07);
+  color: var(--cyan);
+  border-radius: 30px;
+  padding: 7px 15px;
+  font-size: 12px;
+  margin-bottom: 28px;
+}
+
+.availability-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 12px #22c55e;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: clamp(42px,6vw,72px);
+  line-height: 1.08;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+}
+
+.hero h2 {
+  color: #cbd5e1;
+  font-size: clamp(17px,2vw,22px);
+  font-weight: 500;
+  margin-bottom: 18px;
+}
+
+.hero-description {
+  color: var(--muted);
+  max-width: 590px;
+  font-size: 15px;
+  margin-bottom: 30px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 9px;
+  padding: 12px 21px;
+  font-weight: 700;
+  font-size: 13px;
+  transition: .3s;
+}
+
+.btn-primary {
+  color: #07111f;
+  background: var(--gradient);
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(34,211,238,.2);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: white;
+}
+
+.btn-outline:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* Hero visual */
+
+.hero-visual {
+  position: relative;
+  min-height: 350px;
+  display: grid;
+  place-items: center;
+}
+
+.orbit {
+  width: 290px;
+  height: 290px;
+  border: 1px solid rgba(34,211,238,.2);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  position: relative;
+  animation: rotate 25s linear infinite;
+}
+
+.orbit::before {
+  content: "";
+  position: absolute;
+  inset: 25px;
+  border: 1px dashed rgba(59,130,246,.35);
+  border-radius: 50%;
+}
+
+.orbit-core {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(145deg,#172d4c,#0c1629);
+  border: 1px solid rgba(34,211,238,.35);
+  box-shadow: 0 0 65px rgba(34,211,238,.15);
+  border-radius: 35px;
+  display: grid;
+  place-items: center;
+  animation: counter 25s linear infinite;
+}
+
+.orbit-core i {
+  font-size: 66px;
+  color: var(--cyan);
+}
+
+.orbit-icon {
+  position: absolute;
+  background: #14243c;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  color: var(--cyan);
+  font-size: 22px;
+}
+
+.orbit-icon.one { top: 15px; left: 45%; }
+.orbit-icon.two { right: 5px; top: 43%; }
+.orbit-icon.three { bottom: 10px; left: 43%; }
+.orbit-icon.four { left: 0; top: 43%; }
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes counter {
+  to { transform: rotate(-360deg); }
+}
+
+/* Stats */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 15px;
+  margin-top: 55px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  transition: .3s;
+}
+
+.stat-card:hover {
+  border-color: rgba(34,211,238,.5);
+  transform: translateY(-5px);
+}
+
+.stat-card h3 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 30px;
+  color: var(--cyan);
+}
+
+.stat-card p {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Cards */
+
+.card {
+  background: linear-gradient(145deg,rgba(20,34,58,.95),rgba(14,24,42,.95));
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 25px;
+  transition: .3s;
+}
+
+.card:hover {
+  border-color: rgba(34,211,238,.3);
+  transform: translateY(-4px);
+}
+
+.card h3 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 18px;
+  margin-bottom: 7px;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* About */
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.4fr .8fr;
+  gap: 20px;
+}
+
+.about-text {
+  color: #bdc9da;
+  font-size: 15px;
+}
+
+.about-highlight {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-highlight:last-child {
+  border-bottom: 0;
+}
+
+.about-highlight i {
+  color: var(--cyan);
+  font-size: 20px;
+  width: 28px;
+}
+
+.about-highlight span {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Skills */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 17px;
+}
+
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 23px;
+  transition: .3s;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--blue);
+}
+
+.skill-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(59,130,246,.12);
+  display: grid;
+  place-items: center;
+  color: var(--cyan);
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.skill-card h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  padding: 5px 9px;
+  background: rgba(148,163,184,.09);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 11px;
+  color: #cbd5e1;
+}
+
+/* Experience timeline */
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(var(--blue),var(--cyan),transparent);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -32px;
+  top: 27px;
+  width: 18px;
+  height: 18px;
+  background: var(--cyan);
+  border: 4px solid var(--bg);
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(34,211,238,.4);
+}
+
+.timeline-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 25px;
+}
+
+.timeline-card h3 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 19px;
+}
+
+.company {
+  color: var(--cyan);
+  font-size: 13px;
+  margin: 5px 0 15px;
+}
+
+.timeline-card ul {
+  padding-left: 19px;
+  color: #b7c5d8;
+  font-size: 13px;
+}
+
+.timeline-card li {
+  margin-bottom: 8px;
+}
+
+/* Education */
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 16px;
+}
+
+.education-card {
+  display: flex;
+  gap: 17px;
+  align-items: flex-start;
+}
+
+.education-icon {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  background: rgba(34,211,238,.1);
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: var(--cyan);
+}
+
+/* Certifications */
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 16px;
+}
+
+.certificate-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 21px;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: .3s;
+  min-width: 0;
+}
+
+.certificate-card:hover {
+  border-color: var(--cyan);
+  transform: translateY(-4px);
+  background: var(--surface2);
+}
+
+.certificate-info {
+  min-width: 0;
+}
+
+.certificate-info h3 {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+.certificate-info p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.certificate-link {
+  flex-shrink: 0;
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.certificate-link:hover {
+  color: white;
+}
+
+/* Achievements */
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+}
+
+.achievement-card {
+  text-align: center;
+  padding: 28px 18px;
+}
+
+.achievement-card i {
+  font-size: 30px;
+  color: #fbbf24;
+  margin-bottom: 13px;
+}
+
+.achievement-card h3 {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.achievement-card p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Profiles */
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 14px;
+}
+
+.profile-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 19px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  transition: .3s;
+}
+
+.profile-card:hover {
+  border-color: var(--cyan);
+  transform: translateY(-4px);
+}
+
+.profile-card i {
+  font-size: 23px;
+  color: var(--cyan);
+}
+
+.profile-card span {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* Contact */
+
+.contact-box {
+  background: linear-gradient(120deg,#142c4d,#102038);
+  border: 1px solid rgba(34,211,238,.25);
+  border-radius: 20px;
+  padding: 45px;
+  text-align: center;
+}
+
+.contact-box h2 {
+  font-family: 'Space Grotesk',sans-serif;
+  font-size: 35px;
+  margin-bottom: 12px;
+}
+
+.contact-box p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+.contact-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 24px;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.contact-details i {
+  color: var(--cyan);
+  margin-right: 7px;
+}
+
+/* Footer */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 25px 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.footer-name {
+  color: var(--cyan);
+}
+
+/* Back to top */
+
+.back-top {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  width: 43px;
+  height: 43px;
+  background: var(--gradient);
+  color: #07111f;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  display: none;
+  z-index: 900;
+  font-size: 17px;
+}
+
+.back-top.show {
+  display: grid;
+  place-items: center;
+}
+
+/* Reveal animation */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+
+@media(max-width:900px) {
+  .nav-links {
+    gap: 14px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr 0.7fr;
+    gap: 25px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media(max-width:720px) {
+  .section {
+    padding: 70px 0;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: #101a2d;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+  .hero {
+    padding-top: 65px;
+    min-height: auto;
+  }
+
+  .hero-grid,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: 280px;
+  }
+
+  .orbit {
+    width: 240px;
+    height: 240px;
+  }
+
+  .orbit-core {
+    width: 120px;
+    height: 120px;
+  }
+
+  .orbit-core i {
+    font-size: 50px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  .education-grid,
+  .achievement-grid,
+  .profile-grid {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media(max-width:500px) {
+  .container {
+    width: 92%;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .skills-grid,
+  .education-grid,
+  .achievement-grid,
+  .profile-grid,
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-card {
+    padding: 18px;
+  }
+
+  .contact-box {
+    padding: 30px 18px;
+  }
+
+  .contact-box h2 {
+    font-size: 27px;
+  }
+
+  .timeline {
+    padding-left: 27px;
+  }
+
+  .timeline-dot {
+    left: -27px;
+  }
+}
+
+@media(prefers-reduced-motion:reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>Sharanu N Dibbadamani</h1>
-        <p>Firmware/Software Developer | Embedded Systems | IoT </p>
-    </header>
+<div class="progress-bar" id="progressBar"></div>
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
 
-    <nav>
-        <a href="#summary">Summary</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Education</a>
-        <a href="#achievements">Achievements</a>
-        <a href="#contact">Contact</a>
-        <a href="#developer-profiles">Developer Profiles</a>
-    </nav>
+<!-- Navigation -->
+<nav class="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="logo">Sharanu<span>.</span></a>
 
-    <section id="summary">
-        <h2>Summary</h2>
-        <p>
-            C/C++ developer with 3+ years of experience in
-            design & development of Firmware as per business/software requirement specifications.
-        </p>
-    </section>
-    
-<!-- Here__________________- -->
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
-<section id="skills">
-        <h2>Skills</h2>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
 
-        <ul>
-            <li><strong>Programming language:</strong> C, C++, Python.</li>
-            <li><strong>Firmware Development:</strong> Bare-metal, Free-RTOS, Zephyr-RTOS.</li>
-            <li><strong>Communication protocols:</strong> UART, SPI, I2C, BLE.</li>
-            <li><strong>Microcontrollers & Modules:</strong> STM32, ESP32, NXP S32K3XX, CYBT-413061-02.</li>
-            <li><strong>Development tools:</strong> Git, GitHub, GitLab, Bitbucket, SourceTree, Tortoise-Git, Test-link, Bugzilla.</li>
-            <li><strong>Debugging & Testing tools:</strong> UART, JTAG, GDB, Logic analyser, Oscilloscope, Dock light, OBD Emulator, Peak CAN view, Savvy CAN, MATLAB, Simulink, MS-Excel.</li>
+<main>
 
-        </ul>
-    </section>
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
 
-
-    
-
-    <section id="experience">
-        <h2>Experience</h2>
-
-        <p>
-            <strong>Senior Engineer</strong> | Ielektron Technologies Engineering PVT LTD, Chennai | Sept 2026 – June 2026<br>
-        </p>
-        <ul>
-    <li>
-        Implemented the Lock/Unlock feature for the Royal Enfield Flying Flea C6 on the
-        CYBT-413061-02 BLE module, contributing to a vehicle successfully launched in
-        April 2026 (Client: Royal Enfield).
-        <ol type="a">
-            <li>
-                Developed and integrated BLE-based communication for secure vehicle access control.
-            </li>
-            <li>
-                Performed feature validation and troubleshooting to ensure reliable operation
-                across various test scenarios.
-            </li>
-        </ol>
-    </li>
-
-    <li>
-        Took complete ownership of verification and validation activities for Classic Bluetooth profiles.
-        <ol type="a">
-            <li>
-                Validated A2DP profile functionality for seamless audio streaming performance.
-            </li>
-            <li>
-                Verified AVRCP profile operations including media playback and control commands.
-            </li>
-            <li>
-                Tested and validated HFP profile behavior for hands-free calling and audio routing.
-            </li>
-        </ol>
-    </li>
-
-    <li>
-        Collaborated with the UI/UX team of Royal Enfield to refine wireframes and improve
-        the user interface of BLE mobile applications, ensuring usability and an enhanced
-        customer experience.
-    </li>
-</ul>
-
-        <p>
-            <strong>Embedded Engineer</strong> | Thingularity Consulting PVT LTD, Bangalore | Sept 2026 – June 2026<br>
-        </p>
-<ul>
-    <li>
-        Delivered Proof of Concepts (POCs) for 3 IoT projects:
-        <ol type="a">
-            <li>
-                Implemented serial UART on STM32 for gaming machine to handle POG422, USG & SAS data,
-                transferred it to ESP32-S3 and pushed the processed data to a mobile app via BLE UART service.
-            </li>
-            <li>
-                Designed UART commands on ESP32 for a smart spoon (Spoonified), enabling seamless communication
-                between mobile app, ESP32 and AVR via UART for diet monitoring with Wi-Fi provisioning
-                implemented via BLE for connectivity.
-            </li>
-            <li>
-                Designed and developed MQTT, BLE and UART commands for smart grill oven (Kalamaazo project),
-                enabling remote control of oven status (temperature, heat mode, etc.) through ESP32-mobile app
-                communication with BLE-enabled Wi-Fi provisioning while working in direct interaction with the
-                customer to gather requirements and deliver solutions.
-            </li>
-        </ol>
-    </li>
-
-    <li>
-        Contributed to the successful delivery of SGI-Lighting project from POC to final deployment as part of a team,
-        enabling BLE-based mobile app communication with ESP32 and UART data transfer to STM32 MCU for light control.
-        <ol type="a">
-            <li>
-                Implemented and developed commands for STM32 and ESP32 for seamless data transfer between the two MCUs.
-            </li>
-            <li>
-                Performed end-to-end testing, covering both positive and negative test cases, ensuring the product met
-                delivery requirements and quality standards.
-            </li>
-        </ol>
-    </li>
-
-    <li>
-        Validated and delivered an upgraded IoT-based smart lighting platform with AWS IoT Core on STM32,
-        delivering the solution to the customer with complete technical documentation and test reports.
-    </li>
-
-    <li>
-        Collaborated with the UI/UX team to refine wireframes and improve the user interface of BLE mobile apps
-        and IoT platforms, ensuring usability and an enhanced customer experience.
-    </li>
-
-    <li>
-        Represented the company's Smart Lighting MVP project, built on MQTT and BLE technologies, at major
-        Tech Expos in Delhi, Kolkata, Bangalore and Mumbai, demonstrating product features and interacting
-        with industry leaders.
-    </li>
-</ul>
-
-        <p>
-            <strong>Embedded Firmware Engineer</strong> | iTriangle Infotech PVT LTD, Bangalore | Sept 2026 – June 2026<br>
-        </p>
-        <ul>
-    <li>
-        Owned the application layer development, bug fixing and maintenance of the company's flagship product
-        BH101-4G Plus, featuring dual MCUs (Neoway-N58 & NXP KW36), while working as a Junior Firmware Engineer.
-    </li>
-
-    <li>
-        Conducted extensive on-site field testing across India, identifying and resolving real-world device issues
-        through systematic debugging, analysis and firmware fixes.
-    </li>
-
-    <li>
-        Designed, reviewed, enhanced and documented modular test cases in compliance with Product Requirement
-        Specifications (PRS) and Software Requirement Specifications (SRS).
-    </li>
-
-    <li>
-        Performed end-to-end testing of aQuila-Blue Sync mobile application, the company's official Bluetooth
-        application for device configuration, now available on the Play Store and actively used by a majority
-        of customers.
-    </li>
-
-    <li>
-        Took additional responsibility for acquiring CAN PID identifiers required for development through
-        CAN reverse engineering.
-        <ol type="a">
-            <li>
-                Enhanced development efficiency by providing accurate CAN signal information to the firmware team.
-            </li>
-            <li>
-                Directly supported the Customer Support Team (CST) in diagnosing and resolving customer issues
-                related to vehicle communication and data acquisition.
-            </li>
-        </ol>
-    </li>
-</ul>
-
-
-        
-
-
-    </section>
-
-    
-
-    <section id="education">
-        <h2>Education</h2>
-
-        <p>
-            <strong>SDM College of Engineering & Technology, Dharwad, Karnataka</strong><br>
-            Bachelor of Engineering | Electrical & Electronics Engineering | Aug 2018 - July 2022<br>
-            
-        </p>
-
-        <p>
-            <strong>Aryabhata PU Science College, Dharwad, Karnataka</strong><br>
-            PCMB, English & Hindi | May 2018 - may 2018<br>
-            
-        </p>
-
-        <p>
-            <strong>Kendriya Vidyalaya Sangathan, Dharwad, Karnataka</strong><br>
-            CBSE | March 2006 - March 2016<br>
-            
-        </p>
-    </section>
-
-
-
-
-    <section id="achievements">
-        <h2>Achievements</h2>
-
-        <ul>
-            <li>2 times National level Hockey player, representing KVS NAL Bangalore.</li>
-            <li>5 Times Regional level Hockey player, representing KVS Dharwad.</li>
-            <li>5 Times Regional level Chess player, representing KVS Dharwad.</li>
-        </ul>
-    </section>
-
-    <section id="contact" class="contact">
-        <h2>Contact</h2>
-
-        <p><strong>Email:</strong> work.sharanu@gmail.com</p>
-        <p><strong>Location:</strong> Bangalore, Karnataka, India</p>
-    </section>
-
-    <section id="developer-profiles">
-        <h2>Developer Profiles</h2>
-
-        <div class="profile-buttons">
-
-            <a href="https://leetcode.com/u/Sharanu2001/"
-               target="_blank"
-               class="profile-btn">
-                LeetCode
-            </a>
-
-            <a href="https://github.com/SharanuND"
-               target="_blank"
-               class="profile-btn">
-                GitHub
-            </a>
-
-            <a href="https://www.linkedin.com/in/sharanu-dibbadamani/"
-               target="_blank"
-               class="profile-btn">
-                LinkedIn
-            </a>
-
-            <a href="https://www.hackerearth.com/@sharanu14/" 
-                target="_blank" 
-                class="profile-btn"> 
-                HackerEarth 
-            </a> 
-            
-            <a href="https://www.hackerrank.com/profile/sharanudibbadam1" 
-                target="_blank" 
-                class="profile-btn"> 
-                HackerRank 
-
-            </a> 
-            
-            <a href="https://dev.to/sharanund" 
-                target="_blank" 
-                class="profile-btn"> 
-                Dev Community 
-            </a>
-
+      <div class="reveal">
+        <div class="availability">
+          <span class="availability-dot"></span>
+          Embedded Systems Professional
         </div>
-    </section>
 
-    <footer>
-        <p>© 2026 Sharanu N Dibbadamani | Embedded Firmware Engineer Profile</p>
-    </footer>
+        <h1>
+          Hi, I'm<br>
+          <span class="gradient-text">Sharanu N</span><br>
+          Dibbadamani.
+        </h1>
+
+        <h2>Embedded Firmware / Software Developer</h2>
+
+        <p class="hero-description">
+          Building reliable embedded firmware and connected IoT solutions.
+          Experienced in C/C++, microcontrollers, Bluetooth technologies,
+          RTOS, communication protocols, and product validation.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#experience" class="btn btn-primary">
+            Explore My Work <i class="fa-solid fa-arrow-right"></i>
+          </a>
+
+          <a href="#contact" class="btn btn-outline">
+            Get In Touch <i class="fa-regular fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="orbit">
+          <div class="orbit-core">
+            <i class="fa-solid fa-microchip"></i>
+          </div>
+
+          <div class="orbit-icon one"><i class="fa-solid fa-code"></i></div>
+          <div class="orbit-icon two"><i class="fa-brands fa-bluetooth-b"></i></div>
+          <div class="orbit-icon three"><i class="fa-solid fa-wifi"></i></div>
+          <div class="orbit-icon four"><i class="fa-solid fa-gears"></i></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="stats-grid reveal">
+      <div class="stat-card">
+        <h3>3+</h3>
+        <p>Years Experience</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>3</h3>
+        <p>Organizations</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>6+</h3>
+        <p>Developer Platforms</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>4</h3>
+        <p>Certifications</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+  <div class="container reveal">
+    <p class="section-label">01 / Introduction</p>
+    <h2 class="section-heading">A little about <span class="gradient-text">me.</span></h2>
+    <p class="section-description">
+      My technical journey, areas of interest, and engineering background.
+    </p>
+
+    <div class="about-grid">
+      <div class="card">
+        <h3>Professional Summary</h3>
+        <p class="about-text">
+          Embedded Firmware / Software Developer with 3+ years of experience
+          in C, C++, embedded systems, firmware development, and IoT solutions.
+          Experienced in microcontrollers, Bluetooth technologies, communication
+          protocols, debugging, product development, and end-to-end product
+          validation. Passionate about understanding systems from hardware
+          interfaces to application-level functionality.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="about-highlight">
+          <i class="fa-solid fa-microchip"></i>
+          <div>
+            <strong>Core Domain</strong>
+            <br><span>Embedded Firmware Development</span>
+          </div>
+        </div>
+
+        <div class="about-highlight">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <strong>Location</strong>
+            <br><span>Bangalore, Karnataka, India</span>
+          </div>
+        </div>
+
+        <div class="about-highlight">
+          <i class="fa-solid fa-code"></i>
+          <div>
+            <strong>Primary Languages</strong>
+            <br><span>C, C++, Python</span>
+          </div>
+        </div>
+
+        <div class="about-highlight">
+          <i class="fa-solid fa-network-wired"></i>
+          <div>
+            <strong>Interests</strong>
+            <br><span>IoT, RTOS, Bluetooth, MCU</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="section" id="skills">
+  <div class="container reveal">
+    <p class="section-label">02 / Technical Expertise</p>
+    <h2 class="section-heading">My technical <span class="gradient-text">toolbox.</span></h2>
+    <p class="section-description">
+      Technologies, protocols, platforms, and tools I have worked with.
+    </p>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+        <h3>Programming Languages</h3>
+        <div class="tags">
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">Python</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <h3>Operating Systems</h3>
+        <div class="tags">
+          <span class="tag">Bare-metal</span>
+          <span class="tag">FreeRTOS</span>
+          <span class="tag">Zephyr RTOS</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-network-wired"></i></div>
+        <h3>Communication Protocols</h3>
+        <div class="tags">
+          <span class="tag">UART</span>
+          <span class="tag">SPI</span>
+          <span class="tag">I2C</span>
+          <span class="tag">BLE</span>
+          <span class="tag">MQTT</span>
+          <span class="tag">CAN</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
+        <h3>Microcontrollers</h3>
+        <div class="tags">
+          <span class="tag">STM32</span>
+          <span class="tag">ESP32</span>
+          <span class="tag">NXP S32K3XX</span>
+          <span class="tag">CYBT-413061-02</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+        <h3>Debugging & Testing</h3>
+        <div class="tags">
+          <span class="tag">JTAG</span>
+          <span class="tag">GDB</span>
+          <span class="tag">Logic Analyzer</span>
+          <span class="tag">Oscilloscope</span>
+          <span class="tag">Docklight</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-code-branch"></i></div>
+        <h3>Version Control</h3>
+        <div class="tags">
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">GitLab</span>
+          <span class="tag">Bitbucket</span>
+          <span class="tag">SourceTree</span>
+          <span class="tag">TortoiseGit</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-car"></i></div>
+        <h3>Automotive Tools</h3>
+        <div class="tags">
+          <span class="tag">OBD Emulator</span>
+          <span class="tag">PEAK CAN View</span>
+          <span class="tag">SavvyCAN</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3>Development Tools</h3>
+        <div class="tags">
+          <span class="tag">MATLAB</span>
+          <span class="tag">Simulink</span>
+          <span class="tag">MS Excel</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+        <h3>Test Management</h3>
+        <div class="tags">
+          <span class="tag">TestLink</span>
+          <span class="tag">Bugzilla</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section class="section" id="experience">
+  <div class="container reveal">
+    <p class="section-label">03 / Career Journey</p>
+    <h2 class="section-heading">Professional <span class="gradient-text">experience.</span></h2>
+    <p class="section-description">
+      My experience working on embedded firmware, connected devices, and product development.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Senior Engineer</h3>
+          <p class="company">Ielektron Technologies Engineering PVT LTD · Chennai</p>
+          <p class="muted">Employment dates: Update dates</p>
+          <br>
+          <ul>
+            <li>Worked on the Royal Enfield Flying Flea C6 BLE Lock/Unlock feature using CYBT-413061-02.</li>
+            <li>Performed Bluetooth Classic profile validation, including A2DP, AVRCP, and HFP.</li>
+            <li>Collaborated with UI/UX teams for feature integration and product validation.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Embedded Engineer</h3>
+          <p class="company">Thingularity Consulting PVT LTD · Bangalore</p>
+          <p class="muted">Employment dates: Update dates</p>
+          <br>
+          <ul>
+            <li>Developed a gaming machine POC using STM32 UART, ESP32-S3, BLE communication, and a mobile application.</li>
+            <li>Worked on Spoonified Smart Spoon using ESP32, UART, AVR, BLE, and Wi-Fi provisioning.</li>
+            <li>Worked on Kalamaazo Smart Grill Oven using MQTT, BLE, and UART.</li>
+            <li>Developed and tested SGI Lighting solutions using STM32 and ESP32.</li>
+            <li>Worked with AWS IoT Core for smart lighting integration.</li>
+            <li>Participated in technology expos in Delhi, Kolkata, Bangalore, and Mumbai.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <h3>Embedded Firmware Engineer</h3>
+          <p class="company">iTriangle Infotech PVT LTD · Bangalore</p>
+          <p class="muted">Employment dates: Update dates</p>
+          <br>
+          <ul>
+            <li>Worked on BH101-4G Plus device integration using Neoway N58 and NXP KW36.</li>
+            <li>Performed field testing and product validation.</li>
+            <li>Prepared and executed PRS/SRS test cases.</li>
+            <li>Tested the aQuila-Blue Sync mobile application.</li>
+            <li>Worked on CAN PID acquisition, reverse engineering, and customer technical support.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Education -->
+<section class="section" id="education">
+  <div class="container reveal">
+    <p class="section-label">04 / Academic Background</p>
+    <h2 class="section-heading">My <span class="gradient-text">education.</span></h2>
+    <p class="section-description">My academic qualifications.</p>
+
+    <div class="education-grid">
+
+      <div class="card education-card">
+        <div class="education-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div>
+          <h3>BE - Electrical & Electronics Engineering</h3>
+          <p class="muted">SDM College of Engineering & Technology, Dharwad</p>
+          <p class="muted">August 2018 – July 2022</p>
+        </div>
+      </div>
+
+      <div class="card education-card">
+        <div class="education-icon"><i class="fa-solid fa-book-open"></i></div>
+        <div>
+          <h3>PUC - PCMB</h3>
+          <p class="muted">Aryabhata PU Science College, Dharwad</p>
+          <p class="muted">May 2018</p>
+        </div>
+      </div>
+
+      <div class="card education-card">
+        <div class="education-icon"><i class="fa-solid fa-school"></i></div>
+        <div>
+          <h3>SSLC - CBSE</h3>
+          <p class="muted">Kendriya Vidyalaya Sangathan, Dharwad</p>
+          <p class="muted">March 2006 – March 2016</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section class="section" id="certifications">
+  <div class="container reveal">
+    <p class="section-label">05 / Learning & Development</p>
+    <h2 class="section-heading">My <span class="gradient-text">certifications.</span></h2>
+    <p class="section-description">
+      Certifications and technical learning achievements. Select a certificate to verify it.
+    </p>
+
+    <div class="certifications-grid">
+
+      <div class="certificate-card">
+        <div class="certificate-info">
+          <h3>Mastering Data Structures & Algorithms using C and C++</h3>
+          <p><i class="fa-solid fa-award"></i> Udemy</p>
+        </div>
+        <a class="certificate-link" href="https://www.udemy.com/certificate/UC-3a82687b-51a3-417f-8014-1f8c12a923fc/" target="_blank" rel="noopener noreferrer">
+          Verify <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+      <div class="certificate-card">
+        <div class="certificate-info">
+          <h3>CSS (Basic)</h3>
+          <p><i class="fa-solid fa-award"></i> HackerRank</p>
+        </div>
+        <a class="certificate-link" href="https://www.hackerrank.com/certificates/0e44c21c7365" target="_blank" rel="noopener noreferrer">
+          Verify <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+      <div class="certificate-card">
+        <div class="certificate-info">
+          <h3>Python (Basic)</h3>
+          <p><i class="fa-solid fa-award"></i> HackerRank</p>
+        </div>
+        <a class="certificate-link" href="https://www.hackerrank.com/certificates/e146e1266336" target="_blank" rel="noopener noreferrer">
+          Verify <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+      <div class="certificate-card">
+        <div class="certificate-info">
+          <h3>Software Engineering</h3>
+          <p><i class="fa-solid fa-award"></i> HackerRank</p>
+        </div>
+        <a class="certificate-link" href="https://www.hackerrank.com/certificates/b6e3c7dd5cb4" target="_blank" rel="noopener noreferrer">
+          Verify <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Achievements -->
+<section class="section" id="achievements">
+  <div class="container reveal">
+    <p class="section-label">06 / Beyond Engineering</p>
+    <h2 class="section-heading">Achievements & <span class="gradient-text">activities.</span></h2>
+    <p class="section-description">
+      Sports achievements that reflect teamwork, discipline, and competitive spirit.
+    </p>
+
+    <div class="achievement-grid">
+
+      <div class="card achievement-card">
+        <i class="fa-solid fa-trophy"></i>
+        <h3>National-Level Hockey</h3>
+        <p>2 times representing KVS NAL Bangalore.</p>
+      </div>
+
+      <div class="card achievement-card">
+        <i class="fa-solid fa-medal"></i>
+        <h3>Regional-Level Hockey</h3>
+        <p>5 times representing KVS Dharwad.</p>
+      </div>
+
+      <div class="card achievement-card">
+        <i class="fa-solid fa-chess"></i>
+        <h3>Regional-Level Chess</h3>
+        <p>5 times representing KVS Dharwad.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Profiles -->
+<section class="section" id="profiles">
+  <div class="container reveal">
+    <p class="section-label">07 / Online Presence</p>
+    <h2 class="section-heading">Find me <span class="gradient-text">online.</span></h2>
+    <p class="section-description">
+      Explore my developer profiles and coding platforms.
+    </p>
+
+    <div class="profile-grid">
+
+      <a class="profile-card" href="https://leetcode.com/u/Sharanu2001/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-code"></i><span>LeetCode</span>
+      </a>
+
+      <a class="profile-card" href="https://github.com/SharanuND" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-github"></i><span>GitHub</span>
+      </a>
+
+      <a class="profile-card" href="https://www.linkedin.com/in/sharanu-dibbadamani/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-linkedin"></i><span>LinkedIn</span>
+      </a>
+
+      <a class="profile-card" href="https://www.hackerearth.com/@sharanu14/" target="_blank" rel="noopener noreferrer">
+        <i class="fa-solid fa-laptop-code"></i><span>HackerEarth</span>
+      </a>
+
+      <a class="profile-card" href="https://www.hackerrank.com/profile/sharanudibbadam1" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-hackerrank"></i><span>HackerRank</span>
+      </a>
+
+      <a class="profile-card" href="https://dev.to/sharanund" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-dev"></i><span>Dev Community</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="section" id="contact">
+  <div class="container reveal">
+    <div class="contact-box">
+      <p class="section-label">08 / Let's Connect</p>
+      <h2>Have an opportunity in mind?</h2>
+      <p>
+        Let's connect and discuss embedded firmware, software development,
+        and exciting engineering opportunities.
+      </p>
+
+      <a href="mailto:work.sharanu@gmail.com" class="btn btn-primary">
+        <i class="fa-regular fa-envelope"></i> Contact Me
+      </a>
+
+      <div class="contact-details">
+        <span><i class="fa-solid fa-envelope"></i> work.sharanu@gmail.com</span>
+        <span><i class="fa-solid fa-location-dot"></i> Bangalore, India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    Designed & Developed by <span class="footer-name">Sharanu N Dibbadamani</span>
+    <br>
+    © 2026 · Embedded Firmware Engineer Portfolio
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+// Mobile navigation
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", isOpen);
+  menuBtn.innerHTML = isOpen
+    ? '<i class="fa-solid fa-xmark"></i>'
+    : '<i class="fa-solid fa-bars"></i>';
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  });
+});
+
+// Scroll reveal
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  revealElements.forEach(element => observer.observe(element));
+} else {
+  revealElements.forEach(element => element.classList.add("visible"));
+}
+
+// Scroll progress and back-to-top
+const progressBar = document.getElementById("progressBar");
+const backTop = document.getElementById("backTop");
+
+window.addEventListener("scroll", () => {
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0
+    ? (window.scrollY / scrollable) * 100
+    : 0;
+
+  progressBar.style.width = progress + "%";
+
+  backTop.classList.toggle("show", window.scrollY > 400);
+});
+
+// Back to top
+backTop.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// Active navigation section
+const sections = document.querySelectorAll("main section[id]");
+const navItems = document.querySelectorAll(".nav-links a");
+
+if ("IntersectionObserver" in window) {
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navItems.forEach(link => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + entry.target.id
+          );
+        });
+      }
+    });
+  }, { rootMargin: "-30% 0px -60% 0px" });
+
+  sections.forEach(section => sectionObserver.observe(section));
+}
+</script>
 
 </body>
 </html>
